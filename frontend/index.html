@@ -1,0 +1,3065 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LakeFlip Mart - Premium Tech & Lakehouse Shopping</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* Lakehouse Background */
+        .lakehouse-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), 
+                        url('https://images.unsplash.com/photo-1518780664697-55e3ad937233?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            z-index: -2;
+            opacity: 0.15;
+        }
+
+        /* Header - Flipkart Inspired */
+        header {
+            background: linear-gradient(135deg, #2874f0 0%, #1a5dc1 100%);
+            color: white;
+            padding: 0.8rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: #ffe11b;
+        }
+
+        .logo i {
+            color: #ffe11b;
+            font-size: 2rem;
+        }
+
+        .search-bar {
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
+            position: relative;
+        }
+
+        .search-bar input {
+            width: 100%;
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            border: none;
+            font-size: 1rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .search-bar button {
+            position: absolute;
+            right: 0;
+            top: 0;
+            height: 100%;
+            background: #ffe11b;
+            color: #2874f0;
+            border: none;
+            padding: 0 1.5rem;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .header-action {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+
+        .header-action i {
+            font-size: 1.5rem;
+            margin-bottom: 0.2rem;
+        }
+
+        .cart {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -5px;
+            background: #ff6161;
+            color: white;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Navigation */
+        .nav-container {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            padding: 1rem 0;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+
+        .nav-item {
+            margin-right: 2rem;
+            position: relative;
+        }
+
+        .nav-link {
+            color: #555;
+            text-decoration: none;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+
+        .nav-link:hover {
+            background: #f0f8ff;
+            color: #2874f0;
+        }
+
+        .nav-link.active {
+            background: #2874f0;
+            color: white;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.7)), 
+                        url('https://images.unsplash.com/photo-1499793983690-e29da59ef1c2?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            padding: 4rem 3rem;
+            margin: 2rem 0;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero:before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 30%;
+            background: linear-gradient(transparent, rgba(64, 164, 223, 0.2));
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2rem;
+            margin-bottom: 1rem;
+            color: #1a5dc1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 span {
+            color: #ffe11b;
+            background: linear-gradient(45deg, #2874f0, #1a5dc1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-primary {
+            background: #2874f0;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1a5dc1;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(40, 116, 240, 0.3);
+        }
+
+        /* Lakehouse Info Section */
+        .lakehouse-info {
+            background: linear-gradient(rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.95)), 
+                        url('https://images.unsplash.com/photo-1566073771259-6a8506099945?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            border-radius: 15px;
+            padding: 3rem;
+            margin: 3rem 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .lakehouse-info h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: #1a5dc1;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .lakehouse-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .info-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            border-top: 5px solid #2874f0;
+        }
+
+        .info-card i {
+            font-size: 2.5rem;
+            color: #2874f0;
+            margin-bottom: 1rem;
+        }
+
+        .info-card h3 {
+            color: #1a5dc1;
+            margin-bottom: 1rem;
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.2rem;
+            margin: 3rem 0 2rem;
+            color: #1a5dc1;
+            position: relative;
+            padding-bottom: 0.8rem;
+            text-align: center;
+        }
+
+        .section-title:after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, #2874f0, #ffe11b);
+            border-radius: 3px;
+        }
+
+        /* Products Grid - 20 items each */
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-bottom: 4rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s;
+            border: 1px solid rgba(64, 164, 223, 0.1);
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .product-img {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-color: #f5f7fa;
+            position: relative;
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: #ff6161;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-content {
+            padding: 1.5rem;
+        }
+
+        .product-category {
+            display: inline-block;
+            background: #e8f4ff;
+            color: #2874f0;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .product-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: #1a5dc1;
+            height: 3rem;
+            overflow: hidden;
+        }
+
+        .product-rating {
+            color: #ffb400;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2874f0;
+            margin-bottom: 1rem;
+        }
+
+        .product-price .old-price {
+            font-size: 0.9rem;
+            color: #999;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        .product-features {
+            list-style: none;
+            margin-bottom: 1.5rem;
+            font-size: 0.85rem;
+            color: #666;
+            height: 4.5rem;
+            overflow: hidden;
+        }
+
+        .product-features li {
+            padding: 0.2rem 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .product-features li i {
+            color: #2874f0;
+            font-size: 0.8rem;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .product-button {
+            flex: 1;
+            text-align: center;
+            padding: 0.7rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            cursor: pointer;
+            border: none;
+            font-size: 0.9rem;
+        }
+
+        .product-button.buy {
+            background: #ffe11b;
+            color: #1a5dc1;
+        }
+
+        .product-button.cart {
+            background: #2874f0;
+            color: white;
+        }
+
+        .product-button:hover {
+            opacity: 0.9;
+            transform: scale(1.05);
+        }
+
+        /* Category Filter */
+        .category-filter {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border: 2px solid #2874f0;
+            color: #2874f0;
+            border-radius: 25px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .filter-btn.active {
+            background: #2874f0;
+            color: white;
+        }
+
+        .filter-btn:hover {
+            background: #f0f8ff;
+        }
+
+        /* Category Sections */
+        .category-section {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .category-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, #1a237e 0%, #2874f0 100%);
+            color: white;
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.7rem;
+            color: #ffe11b;
+        }
+
+        .footer-column h3:after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 3px;
+            background: #40a4df;
+            bottom: 0;
+            left: 0;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: #c5cae9;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #c5cae9;
+            font-size: 0.9rem;
+        }
+
+        /* Pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin: 3rem 0;
+        }
+
+        .page-btn {
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .page-btn.active {
+            background: #2874f0;
+            color: white;
+            border-color: #2874f0;
+        }
+
+        .page-btn:hover:not(.active) {
+            background: #f0f8ff;
+            border-color: #2874f0;
+        }
+
+        /* Database Status Indicator */
+        #db-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            font-size: 0.8rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        #db-status:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.15);
+        }
+
+        /* Custom Notification */
+        .custom-notification {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: #2874f0;
+            color: white;
+            padding: 1rem 1.5rem;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            z-index: 10000;
+            animation: slideIn 0.3s ease;
+            max-width: 300px;
+            font-size: 0.95rem;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+
+        /* Orders Modal */
+        .orders-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            z-index: 2000;
+            max-width: 600px;
+            max-height: 80vh;
+            overflow-y: auto;
+            width: 90%;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 1999;
+        }
+
+        .order-item {
+            border-bottom: 1px solid #eee;
+            padding: 1rem 0;
+        }
+
+        .status-badge {
+            padding: 0.2rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-pending {
+            background: #fff3e0;
+            color: #ff9800;
+        }
+
+        .status-completed {
+            background: #e8f5e9;
+            color: #4caf50;
+        }
+
+        .close-btn {
+            margin-top: 1rem;
+            padding: 0.8rem 1.5rem;
+            background: #2874f0;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .close-btn:hover {
+            background: #1a5dc1;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1200px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 992px) {
+            .header-content {
+                flex-wrap: wrap;
+            }
+            
+            .search-bar {
+                order: 3;
+                margin: 1rem 0 0;
+                max-width: 100%;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            #db-status {
+                bottom: 10px;
+                right: 10px;
+                padding: 0.4rem 0.8rem;
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 2rem 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .product-actions {
+                flex-direction: column;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            }
+            
+            .product-title {
+                font-size: 1rem;
+                height: 2.5rem;
+            }
+            
+            .product-features {
+                height: 3.5rem;
+                font-size: 0.8rem;
+            }
+            
+            .orders-modal {
+                padding: 1rem;
+                width: 95%;
+            }
+        }
+    </style>
+    <style>
+        /* Auth & Checkout Styles */
+        #app-content { display: none; }
+        .auth-container {
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            min-height: 100vh; background: #f5f7fa; z-index: 9999; position: relative;
+        }
+        .auth-box {
+            background: white; padding: 2.5rem; border-radius: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 100%; max-width: 400px;
+        }
+        .auth-box h2 { text-align: center; margin-bottom: 1.5rem; color: #1a5dc1; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; margin-bottom: 0.5rem; font-size: 0.9rem; color: #555; }
+        .form-group input, .form-group select { width: 100%; padding: 0.8rem; border: 1px solid #ddd; border-radius: 5px; font-size: 1rem; }
+        .auth-btn { width: 100%; padding: 1rem; background: #2874f0; color: white; border: none; border-radius: 5px; font-weight: 600; cursor: pointer; margin-top: 1rem; font-size: 1rem; transition: background 0.3s; }
+        .auth-btn:hover { background: #1a5dc1; }
+        .auth-switch { text-align: center; margin-top: 1rem; font-size: 0.9rem; }
+        .auth-switch a { color: #2874f0; cursor: pointer; text-decoration: none; font-weight: 600; }
+        
+        .checkout-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6);
+            display: none; align-items: center; justify-content: center; z-index: 10000;
+        }
+        .checkout-box {
+            background: white; padding: 2rem; border-radius: 10px; width: 100%; max-width: 500px; max-height: 90vh; overflow-y: auto; box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+        }
+        .checkout-box h2 { color: #1a5dc1; margin-bottom: 1.5rem; border-bottom: 2px solid #f0f0f0; padding-bottom: 0.5rem; }
+        .close-checkout { float: right; cursor: pointer; font-size: 1.5rem; color: #999; }
+        .close-checkout:hover { color: #333; }
+        .checkout-item-details { background: #f9f9f9; padding: 1rem; border-radius: 5px; margin-bottom: 1.5rem; border-left: 4px solid #ffe11b; }
+        .checkout-item-details h4 { margin-top: 0; color: #333; font-size: 1.1rem; }
+        .checkout-item-details .price { color: #2874f0; font-weight: bold; font-size: 1.3rem; margin-top: 0.5rem; }
+    </style>
+</head>
+<body>
+    <div id="auth-view" class="auth-container">
+        <div class="auth-box" id="login-box">
+            <h2>Welcome Back!</h2>
+            <form id="login-form">
+                <div class="form-group"><label>Email Address</label><input type="email" id="login-email" required placeholder="Enter your email"></div>
+                <div class="form-group"><label>Password</label><input type="password" required placeholder="Enter your password"></div>
+                <button type="submit" class="auth-btn">Login to Continue</button>
+                <div class="auth-switch">Don't have an account? <a onclick="toggleAuth('register')">Register here</a></div>
+            </form>
+        </div>
+        <div class="auth-box" id="register-box" style="display: none;">
+            <h2>Create Account</h2>
+            <form id="register-form">
+                <div class="form-group"><label>Full Name</label><input type="text" required placeholder="John Doe"></div>
+                <div class="form-group"><label>Email Address</label><input type="email" id="reg-email" required placeholder="john@example.com"></div>
+                <div class="form-group"><label>Password</label><input type="password" required placeholder="Create a password"></div>
+                <button type="submit" class="auth-btn">Register</button>
+                <div class="auth-switch">Already have an account? <a onclick="toggleAuth('login')">Login here</a></div>
+            </form>
+        </div>
+    </div>
+    
+    <div id="checkout-modal" class="checkout-modal">
+        <div class="checkout-box">
+            <span class="close-checkout" onclick="closeCheckout()">&times;</span>
+            <h2>Complete Your Order</h2>
+            <div class="checkout-item-details">
+                <h4 id="checkout-title">Product Name</h4>
+                <div class="price" id="checkout-price">₹0</div>
+            </div>
+            <form id="checkout-form">
+                <!-- Name and Email removed as requested (auto-filled by login) -->
+                <div class="form-group"><label>Delivery Address</label><input type="text" id="co-address" required placeholder="House No, Street, Landmark"></div>
+                <div class="form-group"><label>Location / City</label><input type="text" id="co-location" required placeholder="City & Pincode"></div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="co-payment" required>
+                        <option value="" disabled selected>Select Payment Method</option>
+                        <option value="phonepe">PhonePe / Google Pay / UPI</option>
+                        <option value="cash">Cash on Delivery (COD)</option>
+                    </select>
+                </div>
+                <button type="submit" class="auth-btn" style="background:#ffe11b; color:#1a5dc1; margin-top:1.5rem; padding: 1.2rem; font-size: 1.1rem; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">Confirm Order</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="app-content">
+    <!-- Lakehouse Background -->
+    <div class="lakehouse-bg"></div>
+
+    <!-- Header - Flipkart Inspired -->
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">
+                <i class="fas fa-water"></i>
+                Lake<span>Flip</span> Mart
+            </a>
+            
+            <div class="search-bar">
+                <input type="text" placeholder="Search laptops, phones, watches...">
+                <button><i class="fas fa-search"></i> Search</button>
+            </div>
+            
+            <div class="header-actions">
+                <a href="#" class="header-action">
+                    <i class="fas fa-user"></i>
+                    <span>Login</span>
+                </a>
+                <a href="#" class="header-action cart">
+                    <i class="fas fa-shopping-cart"></i>
+                    <span>Cart</span>
+                    <span class="cart-count">0</span>
+                </a>
+                <a href="#" class="header-action">
+                    <i class="fas fa-gift"></i>
+                    <span>Deals</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Extra Features Ribbon -->
+    <div class="features-ribbon">
+        <div class="container" style="display: flex; justify-content: flex-end; gap: 1.5rem; padding: 0.5rem 0; font-size: 0.85rem; font-weight: 500;">
+            <a href="#" style="color: #ff6161; text-decoration: none;"><i class="fas fa-bolt"></i> Flash Sales</a>
+            <a href="#" style="color: #2874f0; text-decoration: none;"><i class="fas fa-tags"></i> Offers & Discounts</a>
+            <a href="#" style="color: #555; text-decoration: none;"><i class="fas fa-heart"></i> Wishlist</a>
+            <a href="#" style="color: #555; text-decoration: none;"><i class="fas fa-star"></i> Reviews & Ratings</a>
+            <a href="#" style="color: #555; text-decoration: none;"><i class="fas fa-truck"></i> Order Tracking</a>
+        </div>
+    </div>
+
+    <!-- Mega Navigation -->
+    <style>
+        .features-ribbon { background: #fff; border-bottom: 1px solid #f0f0f0; }
+        .features-ribbon a:hover { color: #1a5dc1 !important; }
+        .mega-nav { box-shadow: 0 2px 10px rgba(0,0,0,0.05); background: #fff; margin-bottom: 2rem; position: relative; z-index: 998; }
+        .mega-menu { display: flex; list-style: none; padding: 1rem 0; justify-content: space-between; overflow: visible !important; margin: 0; }
+        .dropdown { position: relative; cursor: pointer; }
+        .dropdown .nav-link { color: #555; text-decoration: none; font-weight: 600; font-size: 0.85rem; display: flex; flex-direction: column; align-items: center; gap: 8px; transition: color 0.3s; }
+        .dropdown .nav-link i { font-size: 1.5rem; color: #2874f0; transition: transform 0.3s; }
+        .dropdown:hover .nav-link i { transform: translateY(-3px); color: #ffe11b; }
+        .dropdown:hover .nav-link { color: #2874f0; }
+        .dropdown-content { display: none; position: absolute; background-color: #fff; min-width: 220px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-radius: 8px; top: 100%; left: 50%; transform: translateX(-50%); padding: 0.5rem 0; z-index: 1000; border: 1px solid #eee; margin-top: 5px; animation: slideUp 0.3s ease; }
+        @keyframes slideUp { from { opacity: 0; transform: translate(-50%, 10px); } to { opacity: 1; transform: translate(-50%, 0); } }
+        .dropdown-content::before { content: ''; position: absolute; top: -8px; left: 50%; transform: translateX(-50%); border-width: 0 8px 8px 8px; border-style: solid; border-color: transparent transparent #fff transparent; }
+        .dropdown:hover .dropdown-content { display: flex; flex-direction: column; }
+        .dropdown-content a { color: #555; padding: 12px 20px; text-decoration: none; font-size: 0.85rem; border-bottom: 1px solid #f5f5f5; transition: all 0.2s; text-align: left; }
+        .dropdown-content a:last-child { border-bottom: none; }
+        .dropdown-content a:hover { background-color: #f0f8ff; color: #2874f0; padding-left: 25px; font-weight: 500; }
+        @media (max-width: 992px) { .mega-menu { flex-wrap: wrap; gap: 1rem; justify-content: center; } .dropdown-content { position: fixed; left: 50%; top: 50%; transform: translate(-50%, -50%); max-height: 80vh; overflow-y: auto; } }
+    </style>
+    <div class="nav-container mega-nav">
+        <div class="container">
+            <ul class="mega-menu">
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-mobile-alt"></i> Mobiles</a>
+                    <div class="dropdown-content">
+                        <a href="#phones">Smartphones</a><a href="#">Feature phones</a><a href="#">Mobile chargers</a><a href="#">Power banks</a><a href="#">Earphones / Headphones</a><a href="#">Phone cases & covers</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-laptop"></i> Electronics</a>
+                    <div class="dropdown-content">
+                        <a href="#laptops">Laptops</a><a href="#">Tablets</a><a href="#">Monitors</a><a href="#">Printers</a><a href="#">Cameras</a><a href="#watches">Smartwatches</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-tshirt"></i> Fashion</a>
+                    <div class="dropdown-content">
+                        <a href="#">Men's clothing</a><a href="#">Women's clothing</a><a href="#">Kids wear</a><a href="#">Footwear</a><a href="#">Watches</a><a href="#">Bags & wallets</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-couch"></i> Home</a>
+                    <div class="dropdown-content">
+                        <a href="#">Sofas</a><a href="#">Beds & mattresses</a><a href="#">Dining tables</a><a href="#">Chairs</a><a href="#">Home decor items</a><a href="#">Curtains</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-tv"></i> Appliances</a>
+                    <div class="dropdown-content">
+                        <a href="#">Smart TVs</a><a href="#">Refrigerators</a><a href="#">Washing machines</a><a href="#">Air conditioners</a><a href="#">Microwave ovens</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-spray-can"></i> Beauty</a>
+                    <div class="dropdown-content">
+                        <a href="#">Skincare products</a><a href="#">Hair care products</a><a href="#">Makeup items</a><a href="#">Perfumes</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-shopping-basket"></i> Grocery</a>
+                    <div class="dropdown-content">
+                        <a href="#">Rice, dal</a><a href="#">Snacks & beverages</a><a href="#">Cooking oil</a><a href="#">Packaged foods</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-baby-carriage"></i> Toys & Baby</a>
+                    <div class="dropdown-content">
+                        <a href="#">Toys</a><a href="#">Baby clothes</a><a href="#">Diapers</a><a href="#">Baby care products</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-dumbbell"></i> Sports</a>
+                    <div class="dropdown-content">
+                        <a href="#">Gym equipment</a><a href="#">Cricket bats</a><a href="#">Footballs</a><a href="#">Yoga mats</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-car"></i> Auto</a>
+                    <div class="dropdown-content">
+                        <a href="#">Bike accessories</a><a href="#">Car accessories</a><a href="#">Helmets</a>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a class="nav-link"><i class="fas fa-book"></i> Books</a>
+                    <div class="dropdown-content">
+                        <a href="#">School books</a><a href="#">Competitive exam books</a><a href="#">Novels</a><a href="#">Stationery</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to <span>LakeFlip Mart</span></h1>
+                <p>Your one-stop destination for premium tech products and lakehouse living essentials. Combining the convenience of Flipkart with the tranquility of lakeside retreats.</p>
+                <div class="hero-buttons">
+                    <a href="#laptops" class="btn btn-primary">
+                        <i class="fas fa-shopping-bag"></i> Shop Now
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lakehouse Information -->
+        <section class="lakehouse-info" id="lakehouse">
+            <h2>The LakeFlip Experience</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem;">At LakeFlip Mart, we combine the convenience of online shopping with the serenity of lakehouse living. Our unique concept brings you the best of both worlds.</p>
+            
+            <div class="lakehouse-content">
+                <div class="info-card">
+                    <i class="fas fa-ship"></i>
+                    <h3>Lake Delivery</h3>
+                    <p>Unique boat delivery service to lakeside locations. Experience scenic delivery you'll never forget!</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-umbrella-beach"></i>
+                    <h3>Tech by the Lake</h3>
+                    <p>Special packages including tech products + lakeside getaway deals. Perfect for digital nomads.</p>
+                </div>
+                <div class="info-card">
+                    <i class="fas fa-leaf"></i>
+                    <h3>Eco-Friendly</h3>
+                    <p>Committed to sustainability with eco-friendly packaging and lake conservation projects.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Category Filter -->
+        <div class="category-filter">
+            <button class="filter-btn active" data-category="laptops">💻 Laptops (20 Items)</button>
+            <button class="filter-btn" data-category="phones">📱 Phones (20 Items)</button>
+            <button class="filter-btn" data-category="watches">⌚ Watches (20 Items)</button>
+        </div>
+
+        <!-- Laptops Section - 20 Items -->
+        <section id="laptops" class="category-section active">
+            <h2 class="section-title">Premium Laptops Collection</h2>
+            <div class="products-grid">
+                <!-- Laptop 1 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1496181133206-80ce9b88a853?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">-15% OFF</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Gaming Laptop</span>
+                        <h3 class="product-title">MSI Katana 15 B13VFK-485IN</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹1,29,999 <span class="old-price">₹1,52,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i7-13700H</li>
+                            <li><i class="fas fa-gamepad"></i> NVIDIA RTX 4060 8GB</li>
+                            <li><i class="fas fa-memory"></i> 16GB DDR5 RAM</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 2 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1603302576837-37561b2e2302?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">BEST SELLER</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Ultrabook</span>
+                        <h3 class="product-title">Apple MacBook Air M2 2023</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0/5)
+                        </div>
+                        <div class="product-price">₹1,19,999 <span class="old-price">₹1,29,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Apple M2 Chip</li>
+                            <li><i class="fas fa-expand-alt"></i> 13.6" Retina</li>
+                            <li><i class="fas fa-battery-full"></i> 18hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 3 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">NEW</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Gaming Laptop</span>
+                        <h3 class="product-title">ASUS ROG Strix G16</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.9/5)
+                        </div>
+                        <div class="product-price">₹1,49,999 <span class="old-price">₹1,69,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i9-13980HX</li>
+                            <li><i class="fas fa-gamepad"></i> RTX 4070 8GB</li>
+                            <li><i class="fas fa-memory"></i> 32GB DDR5 RAM</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 4 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1593642632823-8f785ba67e45?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">-10% OFF</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Business Laptop</span>
+                        <h3 class="product-title">Dell XPS 15 9530</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹2,29,999 <span class="old-price">₹2,54,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i9-13900H</li>
+                            <li><i class="fas fa-expand-alt"></i> 15.6" OLED 3.5K</li>
+                            <li><i class="fas fa-memory"></i> 32GB RAM</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 5 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1593642702749-b7d2a804fbcf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">HOT DEAL</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Ultrabook</span>
+                        <h3 class="product-title">Lenovo Yoga 9i</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹1,39,999 <span class="old-price">₹1,59,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i7-1360P</li>
+                            <li><i class="fas fa-expand-alt"></i> 14" OLED Touch</li>
+                            <li><i class="fas fa-pen"></i> Active Pen Included</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 6 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">BUDGET</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Student Laptop</span>
+                        <h3 class="product-title">Acer Swift 3</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹59,999 <span class="old-price">₹69,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> AMD Ryzen 7</li>
+                            <li><i class="fas fa-expand-alt"></i> 14" Full HD</li>
+                            <li><i class="fas fa-battery-full"></i> 12hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 7 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1611078489935-0cb964de46d6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">PREMIUM</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Creator Laptop</span>
+                        <h3 class="product-title">Microsoft Surface Laptop Studio 2</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹2,49,999 <span class="old-price">₹2,79,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i7-13800H</li>
+                            <li><i class="fas fa-gamepad"></i> RTX 4060</li>
+                            <li><i class="fas fa-expand-alt"></i> 14.4" Touch</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 8 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1525547719571-a2d4ac8945e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">-12% OFF</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Gaming Laptop</span>
+                        <h3 class="product-title">HP OMEN 16</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹1,59,999 <span class="old-price">₹1,81,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> AMD Ryzen 9</li>
+                            <li><i class="fas fa-gamepad"></i> RTX 4070</li>
+                            <li><i class="fas fa-memory"></i> 16GB DDR5</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 9 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">ULTRA</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Thin & Light</span>
+                        <h3 class="product-title">LG Gram 17</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹1,79,999 <span class="old-price">₹1,99,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i7-1360P</li>
+                            <li><i class="fas fa-weight-hanging"></i> 1.3kg Ultra Light</li>
+                            <li><i class="fas fa-battery-full"></i> 19hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 10 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1531297484001-80022131f5a1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">PRO</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Workstation</span>
+                        <h3 class="product-title">Apple MacBook Pro 16 M3 Max</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (5.0/5)
+                        </div>
+                        <div class="product-price">₹3,99,999 <span class="old-price">₹4,49,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Apple M3 Max</li>
+                            <li><i class="fas fa-memory"></i> 48GB RAM</li>
+                            <li><i class="fas fa-expand-alt"></i> 16" Liquid Retina</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 11 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1559136555-9303baea8ebd?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">VALUE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Everyday Laptop</span>
+                        <h3 class="product-title">ASUS Vivobook 15</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.3/5)
+                        </div>
+                        <div class="product-price">₹49,999 <span class="old-price">₹59,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i5-1235U</li>
+                            <li><i class="fas fa-memory"></i> 16GB RAM</li>
+                            <li><i class="fas fa-expand-alt"></i> 15.6" FHD</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 12 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1587614382346-4ec70e388b28?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">GAMING</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Gaming Laptop</span>
+                        <h3 class="product-title">Alienware m18</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹3,49,999 <span class="old-price">₹3,99,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i9-13980HX</li>
+                            <li><i class="fas fa-gamepad"></i> RTX 4090 16GB</li>
+                            <li><i class="fas fa-memory"></i> 64GB RAM</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 13 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1593642702821-c8da6771f0c6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">2-in-1</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Convertible</span>
+                        <h3 class="product-title">HP Spectre x360 14</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹1,69,999 <span class="old-price">₹1,89,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i7-1355U</li>
+                            <li><i class="fas fa-expand-alt"></i> 14" OLED Touch</li>
+                            <li><i class="fas fa-pen"></i> HP Pen Included</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 14 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">RUGGED</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Outdoor Laptop</span>
+                        <h3 class="product-title">Panasonic Toughbook 55</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹2,99,999 <span class="old-price">₹3,29,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i7-1185G7</li>
+                            <li><i class="fas fa-shield-alt"></i> MIL-STD-810H</li>
+                            <li><i class="fas fa-water"></i> Water Resistant</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 15 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1593642634443-44adaa06623a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">CHROME</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Chromebook</span>
+                        <h3 class="product-title">Google Pixelbook Go</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.4/5)
+                        </div>
+                        <div class="product-price">₹89,999 <span class="old-price">₹99,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i5-1135G7</li>
+                            <li><i class="fas fa-expand-alt"></i> 13.3" FHD Touch</li>
+                            <li><i class="fas fa-battery-full"></i> 12hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 16 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1621259182978-fb931fc3b53c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">DESIGN</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Creator Laptop</span>
+                        <h3 class="product-title">Razer Blade 16</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹3,79,999 <span class="old-price">₹4,19,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i9-13950HX</li>
+                            <li><i class="fas fa-gamepad"></i> RTX 4080</li>
+                            <li><i class="fas fa-expand-alt"></i> Dual-mode Mini-LED</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 17 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1587614203976-365c74645e83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">ECO</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Sustainable</span>
+                        <h3 class="product-title">Acer Aspire Vero</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.2/5)
+                        </div>
+                        <div class="product-price">₹59,999 <span class="old-price">₹69,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i5-1235U</li>
+                            <li><i class="fas fa-recycle"></i> Recycled Materials</li>
+                            <li><i class="fas fa-bolt"></i> 10hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 18 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1587614203976-365c74645e83?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">MOBILE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Portable</span>
+                        <h3 class="product-title">GPD Win Max 2</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.3/5)
+                        </div>
+                        <div class="product-price">₹1,29,999 <span class="old-price">₹1,39,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> AMD Ryzen 7 6800U</li>
+                            <li><i class="fas fa-gamepad"></i> Radeon 680M</li>
+                            <li><i class="fas fa-expand-alt"></i> 10.1" Touch</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 19 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1588872657578-7efd1f1555ed?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">BUSINESS</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Business Laptop</span>
+                        <h3 class="product-title">Lenovo ThinkPad X1 Carbon Gen 11</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.9/5)
+                        </div>
+                        <div class="product-price">₹1,99,999 <span class="old-price">₹2,29,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i7-1365U</li>
+                            <li><i class="fas fa-shield-alt"></i> vPro Security</li>
+                            <li><i class="fas fa-weight-hanging"></i> 1.1kg Carbon Fiber</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laptop 20 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1629131726692-1accd0c53ce0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">NEW</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Gaming Laptop</span>
+                        <h3 class="product-title">Gigabyte Aorus 17X</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹2,99,999 <span class="old-price">₹3,49,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Intel i9-13980HX</li>
+                            <li><i class="fas fa-gamepad"></i> RTX 4090 16GB</li>
+                            <li><i class="fas fa-memory"></i> 32GB DDR5</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Phones Section - 20 Items -->
+        <section id="phones" class="category-section">
+            <h2 class="section-title">Premium Phones Collection</h2>
+            <div class="products-grid">
+                <!-- Phone 1 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">BEST SELLER</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Flagship Phone</span>
+                        <h3 class="product-title">iPhone 15 Pro Max 256GB</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.9/5)
+                        </div>
+                        <div class="product-price">₹1,59,999 <span class="old-price">₹1,69,900</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> A17 Pro Chip</li>
+                            <li><i class="fas fa-camera"></i> 48MP Triple Camera</li>
+                            <li><i class="fas fa-expand-alt"></i> 6.7" Super Retina</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 2 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">-10% OFF</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Android Flagship</span>
+                        <h3 class="product-title">Samsung Galaxy S24 Ultra</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹1,34,999 <span class="old-price">₹1,49,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 3</li>
+                            <li><i class="fas fa-camera"></i> 200MP Camera</li>
+                            <li><i class="fas fa-pen"></i> S Pen Included</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 3 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">FOLDABLE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Foldable Phone</span>
+                        <h3 class="product-title">Samsung Galaxy Z Fold5</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹1,54,999 <span class="old-price">₹1,64,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 2</li>
+                            <li><i class="fas fa-expand-alt"></i> 7.6" Foldable</li>
+                            <li><i class="fas fa-pen"></i> S Pen Support</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 4 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">FOLD</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Foldable</span>
+                        <h3 class="product-title">OnePlus Open</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹1,39,999 <span class="old-price">₹1,49,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 2</li>
+                            <li><i class="fas fa-camera"></i> Hasselblad Camera</li>
+                            <li><i class="fas fa-expand-alt"></i> 7.82" Flexion</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 5 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1567581935884-3349723552ca?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">PRO</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Professional</span>
+                        <h3 class="product-title">Google Pixel 8 Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹1,06,999 <span class="old-price">₹1,19,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Google Tensor G3</li>
+                            <li><i class="fas fa-camera"></i> 50MP Pro Camera</li>
+                            <li><i class="fas fa-thermometer"></i> Temperature Sensor</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 6 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1575909812264-6902b55846cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">ULTRA</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Gaming Phone</span>
+                        <h3 class="product-title">ASUS ROG Phone 7 Ultimate</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹94,999 <span class="old-price">₹1,04,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 2</li>
+                            <li><i class="fas fa-gamepad"></i> AirTrigger 7</li>
+                            <li><i class="fas fa-fan"></i> Active Cooler</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 7 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1589492477829-5e65395b66cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">MID-RANGE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Mid-Range</span>
+                        <h3 class="product-title">Nothing Phone (2)</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹44,999 <span class="old-price">₹49,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8+ Gen 1</li>
+                            <li><i class="fas fa-lightbulb"></i> Glyph Interface</li>
+                            <li><i class="fas fa-expand-alt"></i> 6.7" OLED</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 8 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1565849904461-04a58ad377e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">COMPACT</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Compact Phone</span>
+                        <h3 class="product-title">ASUS Zenfone 10</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹49,999 <span class="old-price">₹54,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 2</li>
+                            <li><i class="fas fa-expand-alt"></i> 5.9" AMOLED</li>
+                            <li><i class="fas fa-camera"></i> 50MP Gimbal</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 9 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1533228876829-65c94e7b5025?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">FLAGSHIP</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Flagship</span>
+                        <h3 class="product-title">Xiaomi 13 Ultra</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹89,999 <span class="old-price">₹99,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 2</li>
+                            <li><i class="fas fa-camera"></i> Leica Quad Camera</li>
+                            <li><i class="fas fa-expand-alt"></i> 6.7" AMOLED</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 10 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">BUDGET</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Budget Phone</span>
+                        <h3 class="product-title">Samsung Galaxy A54 5G</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.4/5)
+                        </div>
+                        <div class="product-price">₹29,999 <span class="old-price">₹34,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Exynos 1380</li>
+                            <li><i class="fas fa-camera"></i> 50MP Camera</li>
+                            <li><i class="fas fa-battery-full"></i> 5000mAh</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 11 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">5G</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Mid-Range</span>
+                        <h3 class="product-title">OnePlus 11R</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹39,999 <span class="old-price">₹44,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8+ Gen 1</li>
+                            <li><i class="fas fa-bolt"></i> 100W Charging</li>
+                            <li><i class="fas fa-expand-alt"></i> 6.7" AMOLED 120Hz</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 12 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1598965402089-897ce52e8355?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">CAMERA</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Camera Phone</span>
+                        <h3 class="product-title">vivo X100 Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹89,999 <span class="old-price">₹99,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Dimensity 9300</li>
+                            <li><i class="fas fa-camera"></i> Zeiss Quad Camera</li>
+                            <li><i class="fas fa-video"></i> 8K Video</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 13 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">FLIP</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Foldable</span>
+                        <h3 class="product-title">Motorola Razr 40 Ultra</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹89,999 <span class="old-price">₹99,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8+ Gen 1</li>
+                            <li><i class="fas fa-expand-alt"></i> 6.9" Foldable</li>
+                            <li><i class="fas fa-tv"></i> 3.6" Cover Display</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 14 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1565849904461-04a58ad377e0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">GAMING</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Gaming Phone</span>
+                        <h3 class="product-title">nubia Red Magic 9 Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹64,999 <span class="old-price">₹69,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 3</li>
+                            <li><i class="fas fa-fan"></i> Active Cooling</li>
+                            <li><i class="fas fa-bolt"></i> 165W Charging</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 15 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1575909812264-6902b55846cf?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">ECO</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Sustainable</span>
+                        <h3 class="product-title">Fairphone 5</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.2/5)
+                        </div>
+                        <div class="product-price">₹49,999 <span class="old-price">₹54,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> QCM6490</li>
+                            <li><i class="fas fa-recycle"></i> Modular Design</li>
+                            <li><i class="fas fa-leaf"></i> Ethical Materials</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 16 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1616348436168-de43ad0db179?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">5G</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Budget 5G</span>
+                        <h3 class="product-title">iQOO Neo 7 Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.4/5)
+                        </div>
+                        <div class="product-price">₹34,999 <span class="old-price">₹39,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8+ Gen 1</li>
+                            <li><i class="fas fa-bolt"></i> 120W Charging</li>
+                            <li><i class="fas fa-expand-alt"></i> 6.78" AMOLED</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 17 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1598965402089-897ce52e8355?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">PRO</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Professional</span>
+                        <h3 class="product-title">Sony Xperia 1 V</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹1,19,999 <span class="old-price">₹1,29,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 2</li>
+                            <li><i class="fas fa-camera"></i> 4K HDR Camera</li>
+                            <li><i class="fas fa-expand-alt"></i> 4K OLED 21:9</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 18 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1598327105666-5b89351aff97?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">RUGGED</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Rugged Phone</span>
+                        <h3 class="product-title">Ulefone Armor 23 Ultra</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.3/5)
+                        </div>
+                        <div class="product-price">₹49,999 <span class="old-price">₹54,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Dimensity 8020</li>
+                            <li><i class="fas fa-shield-alt"></i> IP68/IP69K</li>
+                            <li><i class="fas fa-thermometer"></i> Thermal Camera</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 19 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1589492477829-5e65395b66cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">STYLE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Fashion Phone</span>
+                        <h3 class="product-title">Huawei P60 Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹89,999 <span class="old-price">₹99,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8+ Gen 1</li>
+                            <li><i class="fas fa-camera"></i> XMAGE Camera</li>
+                            <li><i class="fas fa-expand-alt"></i> 6.67" OLED</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Phone 20 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">NEW</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Flagship</span>
+                        <h3 class="product-title">Oppo Find X7 Ultra</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹99,999 <span class="old-price">₹1,09,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 8 Gen 3</li>
+                            <li><i class="fas fa-camera"></i> Hasselblad Quad</li>
+                            <li><i class="fas fa-expand-alt"></i> 6.82" AMOLED</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Watches Section - 20 Items -->
+        <section id="watches" class="category-section">
+            <h2 class="section-title">Premium Watches Collection</h2>
+            <div class="products-grid">
+                <!-- Watch 1 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">BEST SELLER</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Smart Watch</span>
+                        <h3 class="product-title">Apple Watch Series 9 GPS</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹41,900 <span class="old-price">₹45,900</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-heartbeat"></i> Blood Oxygen</li>
+                            <li><i class="fas fa-brain"></i> S9 SiP Chip</li>
+                            <li><i class="fas fa-bolt"></i> 18hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 2 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">-12% OFF</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Smart Watch</span>
+                        <h3 class="product-title">Samsung Galaxy Watch6 Classic</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹36,999 <span class="old-price">₹41,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-heartbeat"></i> ECG Monitor</li>
+                            <li><i class="fas fa-compass"></i> 47mm Display</li>
+                            <li><i class="fas fa-memory"></i> 2GB RAM</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 3 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1579586337278-3befd40fd17a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">GPS</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Sports Watch</span>
+                        <h3 class="product-title">Garmin Forerunner 965</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.9/5)
+                        </div>
+                        <div class="product-price">₹59,999 <span class="old-price">₹64,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-map"></i> GPS Maps</li>
+                            <li><i class="fas fa-running"></i> Running Metrics</li>
+                            <li><i class="fas fa-battery-full"></i> 23-day Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 4 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">LUXURY</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Luxury Watch</span>
+                        <h3 class="product-title">Garmin MARQ Athlete</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹1,29,999 <span class="old-price">₹1,39,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-gem"></i> Titanium Bezel</li>
+                            <li><i class="fas fa-heartbeat"></i> Advanced Metrics</li>
+                            <li><i class="fas fa-map"></i> Topo Maps</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 5 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">FITNESS</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Fitness Tracker</span>
+                        <h3 class="product-title">Fitbit Sense 2</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹24,999 <span class="old-price">₹29,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-heartbeat"></i> ECG App</li>
+                            <li><i class="fas fa-sun"></i> EDA Scan</li>
+                            <li><i class="fas fa-bolt"></i> 6+ Day Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 6 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">PRO</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Adventure</span>
+                        <h3 class="product-title">Apple Watch Ultra 2</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.9/5)
+                        </div>
+                        <div class="product-price">₹89,900 <span class="old-price">₹94,900</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-diving"></i> Depth Gauge</li>
+                            <li><i class="fas fa-thermometer"></i> 40mm Titanium</li>
+                            <li><i class="fas fa-bolt"></i> 36hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 7 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">STYLE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Fashion</span>
+                        <h3 class="product-title">Fossil Gen 6</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.3/5)
+                        </div>
+                        <div class="product-price">₹19,999 <span class="old-price">₹24,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 4100+</li>
+                            <li><i class="fas fa-heartbeat"></i> Heart Rate</li>
+                            <li><i class="fas fa-paypal"></i> Google Pay</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 8 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">CLASSIC</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Hybrid</span>
+                        <h3 class="product-title">Withings ScanWatch</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹29,999 <span class="old-price">₹34,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-heartbeat"></i> ECG Monitoring</li>
+                            <li><i class="fas fa-moon"></i> Sleep Apnea</li>
+                            <li><i class="fas fa-battery-full"></i> 30-day Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 9 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1551376347-075b0121a65b?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">DIVING</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Dive Watch</span>
+                        <h3 class="product-title">Garmin Descent MK3</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹1,49,999 <span class="old-price">₹1,59,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-diving"></i> Dive Computer</li>
+                            <li><i class="fas fa-compass"></i> 3-Axis Compass</li>
+                            <li><i class="fas fa-battery-full"></i> 30hr Dive Mode</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 10 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">MULTISPORT</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Multisport</span>
+                        <h3 class="product-title">Polar Grit X Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹44,999 <span class="old-price">₹49,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-mountain"></i> Altitude/Battery</li>
+                            <li><i class="fas fa-heartbeat"></i> Orthostatic Test</li>
+                            <li><i class="fas fa-battery-full"></i> 40hr GPS</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 11 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1508057198894-247b23fe5ade?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">KIDS</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Kids Watch</span>
+                        <h3 class="product-title">Garmin Bounce</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.4/5)
+                        </div>
+                        <div class="product-price">₹14,999 <span class="old-price">₹16,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-phone"></i> LTE Connectivity</li>
+                            <li><i class="fas fa-map-marker-alt"></i> GPS Tracking</li>
+                            <li><i class="fas fa-gamepad"></i> Activity Games</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 12 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1539874754764-5a96559165b0?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">HYBRID</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Hybrid</span>
+                        <h3 class="product-title">Fossil Hybrid HR</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.2/5)
+                        </div>
+                        <div class="product-price">₹16,999 <span class="old-price">₹19,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-clock"></i> Analog Hands</li>
+                            <li><i class="fas fa-heartbeat"></i> Heart Rate</li>
+                            <li><i class="fas fa-battery-full"></i> 2 Week Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 13 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">SE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Budget Smartwatch</span>
+                        <h3 class="product-title">Apple Watch SE 2</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹29,900 <span class="old-price">₹32,900</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-heartbeat"></i> Heart Rate</li>
+                            <li><i class="fas fa-droplet"></i> Swimproof</li>
+                            <li><i class="fas fa-bolt"></i> 18hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 14 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1546868871-7041f2a55e12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">WATCH</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Smartwatch</span>
+                        <h3 class="product-title">Google Pixel Watch 2</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.5/5)
+                        </div>
+                        <div class="product-price">₹34,999 <span class="old-price">₹39,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-heartbeat"></i> Fitbit Integration</li>
+                            <li><i class="fas fa-clock"></i> Always-on Display</li>
+                            <li><i class="fas fa-bolt"></i> 24hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 15 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1579586337278-3befd40fd17a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">RUNNING</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Running</span>
+                        <h3 class="product-title">Coros Pace 3</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.7/5)
+                        </div>
+                        <div class="product-price">₹24,999 <span class="old-price">₹27,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-running"></i> Running Metrics</li>
+                            <li><i class="fas fa-map"></i> GPS/GLONASS</li>
+                            <li><i class="fas fa-battery-full"></i> 24hr GPS</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 16 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1508685096489-7aacd43bd3b1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">PREMIUM</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Luxury</span>
+                        <h3 class="product-title">Tag Heuer Connected</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.8/5)
+                        </div>
+                        <div class="product-price">₹1,99,999 <span class="old-price">₹2,19,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-gem"></i> Titanium Case</li>
+                            <li><i class="fas fa-microchip"></i> Snapdragon 4100+</li>
+                            <li><i class="fas fa-heartbeat"></i> Health Tracking</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 17 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1551816230-ef5deaed4a26?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">FITNESS</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Fitness</span>
+                        <h3 class="product-title">Whoop 4.0</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.4/5)
+                        </div>
+                        <div class="product-price">₹24,999 <span class="old-price">₹27,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-tachometer-alt"></i> Strain Coach</li>
+                            <li><i class="fas fa-moon"></i> Sleep Tracking</li>
+                            <li><i class="fas fa-battery-full"></i> 5-day Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 18 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1522312346375-d1a52e2b99b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">ADVENTURE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Adventure</span>
+                        <h3 class="product-title">Suunto 9 Peak Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.6/5)
+                        </div>
+                        <div class="product-price">₹54,999 <span class="old-price">₹59,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-mountain"></i> Barometer</li>
+                            <li><i class="fas fa-map"></i> GPS/GLONASS</li>
+                            <li><i class="fas fa-battery-full"></i> 40hr Battery</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 19 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">STYLE</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Fashion</span>
+                        <h3 class="product-title">Michael Kors Gen 6</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i> (4.3/5)
+                        </div>
+                        <div class="product-price">₹22,999 <span class="old-price">₹25,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-microchip"></i> Snapdragon 4100+</li>
+                            <li><i class="fas fa-heartbeat"></i> Heart Rate</li>
+                            <li><i class="fas fa-paypal"></i> Google Pay</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Watch 20 -->
+                <div class="product-card">
+                    <div class="product-img" style="background-image: url('https://images.unsplash.com/photo-1434494878577-86c23bcb06b9?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80');">
+                        <span class="product-badge">NEW</span>
+                    </div>
+                    <div class="product-content">
+                        <span class="product-category">Outdoor</span>
+                        <h3 class="product-title">Garmin Fenix 7 Pro</h3>
+                        <div class="product-rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i> (4.9/5)
+                        </div>
+                        <div class="product-price">₹79,999 <span class="old-price">₹84,999</span></div>
+                        <ul class="product-features">
+                            <li><i class="fas fa-sun"></i> Solar Charging</li>
+                            <li><i class="fas fa-map"></i> TopoActive Maps</li>
+                            <li><i class="fas fa-music"></i> Music Storage</li>
+                        </ul>
+                        <div class="product-actions">
+                            <button class="product-button buy">Buy Now</button>
+                            <button class="product-button cart">Add to Cart</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>LakeFlip Mart</h3>
+                    <p>Your one-stop shop for tech products and lakeside living. Combining convenience with tranquility.</p>
+                    <div style="margin-top: 1rem;">
+                        <a href="#" style="color: white; margin-right: 1rem; font-size: 1.2rem;"><i class="fab fa-facebook"></i></a>
+                        <a href="#" style="color: white; margin-right: 1rem; font-size: 1.2rem;"><i class="fab fa-twitter"></i></a>
+                        <a href="#" style="color: white; margin-right: 1rem; font-size: 1.2rem;"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#laptops">Laptops</a></li>
+                        <li><a href="#phones">Phones</a></li>
+                        <li><a href="#watches">Watches</a></li>
+                        <li><a href="#lakehouse">Lakehouse</a></li>
+                        <li><a href="#">About Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Customer Service</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Shipping Policy</a></li>
+                        <li><a href="#">Returns & Refunds</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Contact Info</h3>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-map-marker-alt"></i> Lakeside Plaza, Tech Bay</li>
+                        <li><i class="fas fa-phone"></i> +1 (555) 123-LAKE</li>
+                        <li><i class="fas fa-envelope"></i> info@lakeflipmart.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Sun: 7AM-11PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 LakeFlip Mart. All rights reserved. | Designed with <i class="fas fa-heart" style="color:#ffe11b;"></i> by the Lake</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // Show selected category
+                document.querySelectorAll('.category-section').forEach(section => {
+                    section.classList.remove('active');
+                });
+                document.getElementById(category).classList.add('active');
+                
+                // Scroll to category
+                document.getElementById(category).scrollIntoView({ behavior: 'smooth' });
+            });
+        });
+
+        // Navigation active state
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function() {
+                document.querySelectorAll('.nav-link').forEach(item => {
+                    item.classList.remove('active');
+                });
+                this.classList.add('active');
+            });
+        });
+
+        // Cart functionality
+        let cartItems = 0;
+        document.querySelectorAll('.product-button.cart').forEach(button => {
+            button.addEventListener('click', function() {
+                cartItems++;
+                document.querySelector('.cart-count').textContent = cartItems;
+                
+                // Animation
+                const cartCount = document.querySelector('.cart-count');
+                cartCount.style.transform = 'scale(1.3)';
+                setTimeout(() => {
+                    cartCount.style.transform = 'scale(1)';
+                }, 300);
+                
+                // Show notification
+                const productTitle = this.closest('.product-card').querySelector('.product-title').textContent;
+                showNotification(`Added "${productTitle}" to cart!`);
+            });
+        });
+
+        // Search functionality
+        document.querySelector('.search-bar button').addEventListener('click', function() {
+            const searchTerm = document.querySelector('.search-bar input').value;
+            if(searchTerm.trim()) {
+                showNotification(`Searching for: "${searchTerm}"`);
+            }
+        });
+
+        // Function to show notification
+        function showNotification(message) {
+            // Remove any existing notification
+            const existingNotification = document.querySelector('.custom-notification');
+            if (existingNotification) {
+                document.body.removeChild(existingNotification);
+            }
+            
+            const notification = document.createElement('div');
+            notification.className = 'custom-notification';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                if (notification.parentNode) {
+                    notification.style.animation = 'slideIn 0.3s ease reverse';
+                    setTimeout(() => {
+                        if (notification.parentNode) {
+                            document.body.removeChild(notification);
+                        }
+                    }, 300);
+                }
+            }, 3000);
+        }
+
+        // ============= ORDER SYSTEM WITH DATABASE =============
+
+        // Function to place an order
+        async function placeOrder(product) {
+            try {
+                const customerName = prompt('Enter your name (or click Cancel for Guest):');
+                const customerEmail = prompt('Enter your email (optional):');
+                
+                const orderData = {
+                    productId: product.productId,
+                    productName: product.name,
+                    productCategory: product.category,
+                    price: product.price,
+                    customerName: customerName || 'Guest',
+                    customerEmail: customerEmail || 'guest@example.com',
+                    quantity: 1
+                };
+                
+                const response = await fetch('/api/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(orderData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    showNotification(`✅ Order placed successfully! Order ID: ${data.orderId}`);
+                    console.log('Order details:', data);
+                } else {
+                    showNotification('❌ Failed to place order');
+                }
+            } catch (error) {
+                console.error('Error placing order:', error);
+                showNotification('❌ Error connecting to server');
+            }
+        }
+
+        // Initialize products from database
+        async function initializeProducts() {
+            try {
+                const response = await fetch('/api/init-products', { method: 'POST' });
+                const data = await response.json();
+                console.log('Products initialized:', data);
+            } catch (error) {
+                console.error('Error initializing products:', error);
+            }
+        }
+
+        // Check database health
+        async function checkDatabaseHealth() {
+            try {
+                const response = await fetch('/api/health');
+                const data = await response.json();
+                console.log('Database status:', data);
+                
+                const indicator = document.getElementById('db-indicator');
+                const statusText = document.querySelector('#db-status span');
+                
+                if (data.database === 'connected') {
+                    if (indicator) indicator.style.background = '#4caf50';
+                    if (statusText) statusText.textContent = 'Database connected';
+                } else {
+                    if (indicator) indicator.style.background = '#f44336';
+                    if (statusText) statusText.textContent = 'Database disconnected';
+                }
+            } catch (error) {
+                console.error('Error checking database health:', error);
+                const indicator = document.getElementById('db-indicator');
+                const statusText = document.querySelector('#db-status span');
+                if (indicator) indicator.style.background = '#f44336';
+                if (statusText) statusText.textContent = 'Backend offline';
+            }
+        }
+
+        // Modify existing buy buttons to use the order system
+        document.querySelectorAll('.product-button.buy').forEach((button, index) => {
+            // Remove existing event listeners by cloning and replacing
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+            
+            newButton.addEventListener('click', function() {
+                const productCard = this.closest('.product-card');
+                const categoryElement = productCard.querySelector('.product-category');
+                const priceElement = productCard.querySelector('.product-price');
+                
+                const product = {
+                    productId: `product-${index}`,
+                    name: productCard.querySelector('.product-title').textContent,
+                    category: categoryElement ? categoryElement.textContent.toLowerCase().replace(/\s+/g, '') : 'unknown',
+                    price: parseInt(priceElement ? priceElement.textContent.replace(/[^0-9]/g, '') : '0')
+                };
+                placeOrder(product);
+            });
+        });
+
+        // Add view orders button to header
+        function addViewOrdersButton() {
+            const headerActions = document.querySelector('.header-actions');
+            if (headerActions) {
+                const viewOrdersBtn = document.createElement('a');
+                viewOrdersBtn.href = '#';
+                viewOrdersBtn.className = 'header-action';
+                viewOrdersBtn.id = 'view-orders-btn';
+                viewOrdersBtn.innerHTML = `
+                    <i class="fas fa-history"></i>
+                    <span>Orders</span>
+                `;
+                
+                viewOrdersBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    viewOrders();
+                });
+                
+                headerActions.appendChild(viewOrdersBtn);
+            }
+        }
+
+        // Function to view orders
+        async function viewOrders() {
+            try {
+                const response = await fetch('/api/orders');
+                const orders = await response.json();
+                
+                if (orders.length === 0) {
+                    showNotification('No orders found');
+                    return;
+                }
+                
+                // Create modal to display orders
+                const overlay = document.createElement('div');
+                overlay.className = 'modal-overlay';
+                
+                const modal = document.createElement('div');
+                modal.className = 'orders-modal';
+                
+                let ordersHtml = '<h2 style="margin-bottom: 1.5rem; color: #2874f0;">Your Orders</h2>';
+                
+                orders.forEach(order => {
+                    const orderDate = new Date(order.orderDate).toLocaleDateString();
+                    const statusClass = order.status === 'pending' ? 'status-pending' : 'status-completed';
+                    
+                    ordersHtml += `
+                        <div class="order-item">
+                            <p><strong>Order ID:</strong> ${order._id.substring(0, 8)}...</p>
+                            <p><strong>Product:</strong> ${order.productName}</p>
+                            <p><strong>Price:</strong> ₹${order.price}</p>
+                            <p><strong>Date:</strong> ${orderDate}</p>
+                            <p><strong>Status:</strong> <span class="status-badge ${statusClass}">${order.status}</span></p>
+                        </div>
+                    `;
+                });
+                
+                ordersHtml += `
+                    <button class="close-btn" onclick="this.closest('.orders-modal').remove(); document.querySelector('.modal-overlay').remove();">
+                        Close
+                    </button>
+                `;
+                
+                modal.innerHTML = ordersHtml;
+                
+                overlay.addEventListener('click', () => {
+                    document.body.removeChild(modal);
+                    document.body.removeChild(overlay);
+                });
+                
+                document.body.appendChild(overlay);
+                document.body.appendChild(modal);
+                
+            } catch (error) {
+                console.error('Error fetching orders:', error);
+                showNotification('❌ Error fetching orders');
+            }
+        }
+
+        // Add database status indicator
+        function addDatabaseStatus() {
+            const statusDiv = document.createElement('div');
+            statusDiv.id = 'db-status';
+            statusDiv.innerHTML = `
+                <div style="width: 10px; height: 10px; border-radius: 50%; background: #f0ad4e;" id="db-indicator"></div>
+                <span>Checking database...</span>
+            `;
+            
+            document.body.appendChild(statusDiv);
+            
+            // Update status every 5 seconds
+            setInterval(checkDatabaseHealth, 5000);
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            // Add view orders button
+            addViewOrdersButton();
+            
+            // Add database status indicator
+            addDatabaseStatus();
+            
+            // Check database health immediately
+            checkDatabaseHealth();
+            
+            // Initialize products after 2 seconds
+            setTimeout(() => {
+                initializeProducts();
+            }, 2000);
+            
+            console.log('✅ Order system initialized');
+        });
+        // === Custom Auth & Checkout Logic ===
+        function toggleAuth(type) {
+            document.getElementById('login-box').style.display = type === 'login' ? 'block' : 'none';
+            document.getElementById('register-box').style.display = type === 'register' ? 'block' : 'none';
+        }
+
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            localStorage.setItem('currentUser', document.getElementById('login-email').value);
+            document.getElementById('auth-view').style.display = 'none';
+            document.getElementById('app-content').style.display = 'block';
+            if(typeof showNotification === 'function') showNotification('Successfully logged in!');
+        });
+
+        document.getElementById('register-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            localStorage.setItem('currentUser', document.getElementById('reg-email').value);
+            document.getElementById('auth-view').style.display = 'none';
+            document.getElementById('app-content').style.display = 'block';
+            if(typeof showNotification === 'function') showNotification('Account created successfully!');
+        });
+
+        // Check login on load
+        if (localStorage.getItem('currentUser')) {
+            document.getElementById('auth-view').style.display = 'none';
+            document.getElementById('app-content').style.display = 'block';
+        } else {
+            document.getElementById('auth-view').style.display = 'flex';
+            document.getElementById('app-content').style.display = 'none';
+        }
+
+        // Logout logic - hook into header login button
+        const loginHeaderBtn = document.querySelector('.header-action i.fa-user');
+        if(loginHeaderBtn && loginHeaderBtn.parentElement) {
+            const btnLink = loginHeaderBtn.parentElement;
+            btnLink.innerHTML = '<i class="fas fa-sign-out-alt"></i><span>Logout</span>';
+            btnLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                localStorage.removeItem('currentUser');
+                location.reload();
+            });
+        }
+
+        // Intercept Buy Now buttons for Checkout Modal
+        let activeProductForCheckout = null;
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('buy') || e.target.closest('.buy')) {
+                e.preventDefault();
+                e.stopPropagation(); // Stop existing placeOrder logic
+                
+                const card = e.target.closest('.product-card');
+                if(!card) return;
+                
+                const title = card.querySelector('.product-title').textContent.trim();
+                let priceText = card.querySelector('.product-price').textContent.trim(); // "₹1,29,999 ₹1,52,999"
+                priceText = priceText.split(' ')[0]; // Gets just the current price part
+                
+                document.getElementById('checkout-title').textContent = title;
+                document.getElementById('checkout-price').textContent = priceText;
+                document.getElementById('checkout-modal').style.display = 'flex';
+                
+                activeProductForCheckout = {
+                    id: Math.random().toString(36).substr(2, 9),
+                    name: title,
+                    price: parseInt(priceText.replace(/[^0-9]/g, ''))
+                };
+            }
+        }, true); // use capturing phase to guarantee stopping original event
+
+        function closeCheckout() {
+            document.getElementById('checkout-modal').style.display = 'none';
+        }
+
+        document.getElementById('checkout-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Auto-fetch email from login
+            let userEmail = localStorage.getItem('currentUser');
+            if(!userEmail) userEmail = 'guest@example.com';
+            let userName = userEmail.split('@')[0]; // simple fallback name
+            
+            const orderDetails = {
+                productName: activeProductForCheckout.name,
+                price: activeProductForCheckout.price,
+                customerName: userName,
+                email: userEmail,
+                address: document.getElementById('co-address').value,
+                location: document.getElementById('co-location').value,
+                paymentMethod: document.getElementById('co-payment').value
+            };
+            
+            console.log('Sending detailed order:', orderDetails);
+            
+            fetch('/api/orders', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(orderDetails)
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.success) {
+                    if(typeof showNotification === 'function') showNotification('Order saved to Database successfully!');
+                    else alert('Order saved to Database successfully!');
+                    closeCheckout();
+                    document.getElementById('checkout-form').reset();
+                } else {
+                    alert('Failed to place order: ' + data.message);
+                }
+            })
+            .catch(err => {
+                console.error('Database connection error:', err);
+                alert('Database connection error: Could not save order!');
+            });
+        });
+
+        // Quick Category & Products Injector (User Request)
+        const newCategories = [
+            { id: 'fashion', name: "👕 Fashion", items: [{ name: "Men's Classic Shirt", price: "899" }, { name: "Women's Floral Dress", price: "1299" }, {name: "Kids Denim", price: "599"}, {name: "Puma Sneakers", price: "1599"}] },
+            { id: 'home', name: "🏠 Home", items: [{ name: "Modern Sofa 3-Seater", price: "12500" }, { name: "Wooden Dining Table", price: "18000" }, {name: "Queen Size Bed", price: "22000"}, {name: "Premium Curtains", price: "800"}] },
+            { id: 'appliances', name: "📺 Appliances", items: [{ name: "Smart TV 55-inch", price: "34000" }, { name: "Double Door Refrigerator", price: "24000" }, {name: "Front Load Washing Machine", price: "15500"}, {name: "Microwave Oven 20L", price: "6500"}] },
+            { id: 'beauty', name: "🧴 Beauty", items: [{ name: "Ayurvedic Skincare Kit", price: "1200" }, { name: "Luxury Perfume Collection", price: "1800" }, {name: "Pro Hair Straightener", price: "2200"}, {name: "Bridal Makeup Combo", price: "999"}] },
+            { id: 'grocery', name: "🍔 Grocery", items: [{ name: "Premium Basmati Rice 5kg", price: "850" }, { name: "Extra Virgin Olive Oil 2L", price: "1400" }, {name: "Party Snacks Pack", price: "450"}, {name: "Mixed Dry Fruits 1kg", price: "1100"}] },
+            { id: 'toys', name: "🧸 Toys & Baby", items: [{ name: "Lego Building Blocks", price: "2500" }, { name: "Premium Baby Stroller", price: "4500" }, {name: "Remote Control Monster Car", price: "1200"}, {name: "Giant Soft Toy Bear", price: "500"}] },
+            { id: 'sports', name: "🏋️ Sports", items: [{ name: "Anti-slip Yoga Mat", price: "400" }, { name: "Adjustable Dumbbell Set", price: "1200" }, {name: "Kashmir Willow Cricket Bat", price: "1500"}, {name: "Pro Football", price: "600"}] },
+            { id: 'auto', name: "🚗 Auto", items: [{ name: "Car Vacuum Cleaner", price: "900" }, { name: "Studds Motorcycle Helmet", price: "1800" }, {name: "Leather Seat Covers", price: "2500"}, {name: "HD Dashboard Camera", price: "3200"}] },
+            { id: 'books', name: "📚 Books", items: [{ name: "Sci-Fi Novel Box Set", price: "999" }, { name: "UPSC Exam Prep 2024", price: "550" }, {name: "College Notebooks Combo", price: "300"}, {name: "Engineering Mathematics", price: "750"}] }
+        ];
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const watchesSection = document.getElementById('watches');
+            if(watchesSection) {
+                // Generate HTML for all new products
+                newCategories.forEach(cat => {
+                    const section = document.createElement('section');
+                    section.id = cat.id;
+                    section.className = 'category-section';
+                    section.style.display = 'block'; // Or none if you want hidden
+                    section.style.marginTop = '2rem';
+                    
+                    let html = `<h2 class="section-title">${cat.name.substring(3).trim()} Collection</h2><div class="products-grid">`;
+                    
+                    cat.items.forEach((item, index) => {
+                        html += `
+                        <div class="product-card">
+                            <div class="product-img" style="background-color: #f4f4f4; background-size: cover; background-image: url('https://picsum.photos/seed/${cat.id}${index}/400/400');">
+                            </div>
+                            <div class="product-content">
+                                <span class="product-category">${cat.name.substring(3).trim()}</span>
+                                <h3 class="product-title">${item.name}</h3>
+                                <div class="product-rating">
+                                    <i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star" style="color: gold;"></i><i class="fas fa-star-half-alt" style="color: gold;"></i> (4.5/5)
+                                </div>
+                                <div class="product-price">₹${item.price} <span class="old-price">₹${Math.floor(item.price * 1.3)}</span></div>
+                                <ul class="product-features">
+                                    <li><i class="fas fa-check" style="color:green;"></i> High Quality</li>
+                                    <li><i class="fas fa-truck" style="color:blue;"></i> Fast Delivery</li>
+                                </ul>
+                                <div class="product-actions">
+                                    <button class="product-button buy">Buy Now</button>
+                                    <button class="product-button cart">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>
+                        `;
+                    });
+                    
+                    html += `</div>`;
+                    section.innerHTML = html;
+                    
+                    // Insert the new specific section 
+                    document.getElementById('app-content').appendChild(section);
+                });
+            }
+        });
+    </script>
+    </div> <!-- END app-content -->
+</body>
+</html>
